@@ -6,7 +6,7 @@ interface Props {
   fillColor: "red" | "blue";
   size: number;
 }
-const Like = ({ onClick, fillColor,size }: Props) => {
+const Like = ({ onClick, fillColor, size }: Props) => {
   const [selectedStatus, setSelectedStatus] = useState(false);
 
   const toggle = () => {
