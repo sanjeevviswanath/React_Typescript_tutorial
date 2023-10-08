@@ -12,6 +12,7 @@ let items = [
   "Madison",
   "Mountain House",
   "London",
+  "Kochi",
 ];
 const handleSelectItem = (item: string) => {
   console.log(item);
