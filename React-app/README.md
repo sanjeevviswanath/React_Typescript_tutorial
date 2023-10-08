@@ -34,4 +34,8 @@ d. open in VS Code - code .
 e. install bootstrap library - npm i bootstrap@5.3.2
 f. In main.tsx add import 'bootstrap/dist/css/bootstrap.css'
 g. For easily create a component function template use "rafce"
+h. For icons, use command npm install react-icons --save 
+ you can search and select the icons from react-icons from https://react-icons.github.io/react-icons
+
+i. 
 

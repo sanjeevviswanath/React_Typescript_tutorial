@@ -3,6 +3,7 @@ import Message from "./Message";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
 import ListGroup from "./components/ListGroup";
+import Like from "./components/Like";
 
 let items = [
   "New York",
@@ -50,6 +51,13 @@ function App() {
       >
         Alert On
       </Button>
+      <Like
+        onClick={() => {
+          console.log("clicked");
+        }}
+        fillColor="red"
+        size={30}
+      />
     </div>
   );
 }
