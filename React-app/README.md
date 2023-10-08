@@ -31,3 +31,7 @@ a. npm create vite@latest
 b. cd <react app folder>
 c. npm i
 d. open in VS Code - code .
+e. install bootstrap library - npm i bootstrap@5.3.2
+f. In main.tsx add import 'bootstrap/dist/css/bootstrap.css'
+g. For easily create a component function template use "rafce"
+
