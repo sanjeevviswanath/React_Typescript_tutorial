@@ -42,6 +42,43 @@ function App() {
     { id: 1, title: "bug 1", fixed: false },
     { id: 2, title: "bug 2", fixed: false },
   ]);
+  const findMaxWordPatten = (inputStr: String) => {
+    if (inputStr.length === 0) {
+      return ""; // Return an empty string if the input is empty
+    }
+
+    let currentSequence = inputStr[0]; // Initialize the current sequence with the first character
+    let longestSequence = inputStr[0]; // Initialize the longest sequence with the first character
+
+    for (let i = 1; i < inputStr.length; i++) {
+      const currentChar = inputStr[i];
+      const previousChar = inputStr[i - 1];
+
+      // Check if the current character is the next alphabetically adjacent letter
+      if (currentChar.charCodeAt(0) === previousChar.charCodeAt(0) + 1) {
+        currentSequence += currentChar; // Add the character to the current sequence
+      } else {
+        // Compare the length of the current sequence with the longest sequence
+        if (currentSequence.length > longestSequence.length) {
+          longestSequence = currentSequence; // Update the longest sequence
+        }
+        currentSequence = currentChar; // Start a new current sequence
+      }
+    }
+
+    // Compare the length of the last current sequence with the longest sequence
+    if (currentSequence.length > longestSequence.length) {
+      longestSequence = currentSequence; // Update the longest sequence
+    }
+
+    return longestSequence;
+  };
+
+  const [wordInput, setWordInput] = useState("");
+  const [wordResult, setWordResult] = useState("");
+  const handleGetWordClick = () => {
+    setWordResult(findMaxWordPatten(wordInput));
+  };
   const priceOnClick = () => {
     //If we do like this by changing just one property of the original
     //object, nothing happens. We should always pass a new object
@@ -54,6 +91,7 @@ function App() {
     //const newDrink = { ...drink, price: 10 };
     setDrink({ ...drink, price: 10 });
   };
+
   const addressOnClick = () => {
     setCustomer({ ...customer, address: { ...customer.address, zip: 95391 } });
   };
@@ -122,6 +160,10 @@ function App() {
       <button onClick={arrayUpdateOnClick}>Update an array</button>
       <button onClick={arrayDeleteOnClick}>Delete an array</button>
       <button onClick={bugOnClick}>Update Bug fixed</button>
+      <input type="text" onChange={(e) => setWordInput(e.target.value)} />
+      <button onClick={handleGetWordClick}>Find Max pattern</button>
+      <p>Input text: {wordInput}</p>
+      <p>Result text: {wordResult}</p>
     </div>
   );
 }
