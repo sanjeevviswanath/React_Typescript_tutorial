@@ -4,6 +4,7 @@ import Alert from "./components/Alert";
 import Button from "./components/Button";
 import ListGroup from "./components/ListGroup";
 import Like from "./components/Like";
+import produce from "immer";
 
 let items = [
   "New York",
@@ -37,6 +38,10 @@ function App() {
     },
   });
   const [tags, setTags] = useState(["happy", "cheerful"]);
+  const [bugs, setBugs] = useState([
+    { id: 1, title: "bug 1", fixed: false },
+    { id: 2, title: "bug 2", fixed: false },
+  ]);
   const priceOnClick = () => {
     //If we do like this by changing just one property of the original
     //object, nothing happens. We should always pass a new object
@@ -64,6 +69,17 @@ function App() {
   const arrayDeleteOnClick = () => {
     setTags(tags.filter((tag) => tag !== "sad"));
   };
+  const bugOnClick = () => {
+    //we can use the map function or immer way of doing it as below
+    //setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+    setBugs(
+      produce((draft) => {
+        const bug = draft.find((bug) => bug.id === 1);
+        if (bug) bug.fixed = true;
+      })
+    );
+  };
+
   return (
     <div>
       {alertVisible && (
@@ -99,11 +115,13 @@ function App() {
       <p>{drink.price}</p>
       <p>{customer.address.zip}</p>
       <p>{tags.toString()}</p>
+      <p>{bugs[0].fixed ? "true" : "false"}</p>
       <button onClick={priceOnClick}>price update</button>
       <button onClick={addressOnClick}>address update</button>
       <button onClick={arrayAddOnClick}>Add to array</button>
       <button onClick={arrayUpdateOnClick}>Update an array</button>
       <button onClick={arrayDeleteOnClick}>Delete an array</button>
+      <button onClick={bugOnClick}>Update Bug fixed</button>
     </div>
   );
 }

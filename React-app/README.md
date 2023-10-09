@@ -37,5 +37,6 @@ g. For easily create a component function template use "rafce"
 h. For icons, use command npm install react-icons --save 
  you can search and select the icons from react-icons from https://react-icons.github.io/react-icons
 
-i. 
+i. for updating complex objects, we can use immer library. npm i immer@9.0.19
+
 
